@@ -1,27 +1,19 @@
-
-import React,{useState} from 'react';
-import Perfil from './componentes/Perfil';
+import React from 'react';
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
+import theme from './theme/theme';
+import RegistrarUsuario from './componentes/seguridad/RegistrarUsuario';
+import Login from './componentes/seguridad/Login';
+import PerfilUsuario from './componentes/seguridad/PerfilUsuario';
 
 function App() {
-  const [nombre, cambiarNombre] = useState('No tiene nombre');
-
-  function eventoTextBox(e){
-    cambiarNombre(e.target.value)
-  }
-
-  return (
-    <div>              
-        <p style={{fontSize: 25, marginTop: -1, marginLeft: 20}}><b>Consumiendo Servicio Countries con Rect:&emsp;</b>
-          (https://restcountries.com/v3.1/lang/spanish)
-        </p>
-
-        <div style={{width: 895, height: 780, overflow: "auto"}} >
-            <Perfil />
-        </div>
-
-                 
-    </div>
-   );
+  return(
+    <MuiThemeProvider theme = {theme}>
+      {/* <RegistrarUsuario /> */}
+      {/* <Login /> */}
+      <PerfilUsuario />
+    </MuiThemeProvider>
+    
+  );
 }
 
 export default App;
