@@ -12,8 +12,13 @@ export const PerfilUsuario = () => {
         </div>
         <form style={style.form}>
             <Grid container spacing={2}>
+
                 <Grid item xs={12} md={6}>
-                    <TextField name='txtNombreCompleto' variant='outlined' label='Ingrese nombre y apellidos' fullWidth />
+                    <TextField name='txtNombre' variant='outlined' label='Ingrese nombre' fullWidth />
+                </Grid>
+
+                <Grid item xs={12} md={6}>
+                    <TextField name='txtApellidos' variant='outlined' label='Ingrese apellidos' fullWidth />
                 </Grid>
 
                 <Grid item xs={12} md={6}>
@@ -27,6 +32,7 @@ export const PerfilUsuario = () => {
                 <Grid item xs={12} md={6}>
                     <TextField name='txtConfirmaPassword' variant='outlined' label='Confirme su password' fullWidth />
                 </Grid>
+                
             </Grid>
 
             <Grid container justify='center'>
