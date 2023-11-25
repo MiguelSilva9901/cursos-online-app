@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Button, Container, Grid, TextField, Typography } from "@material-ui/core";
 import style from '../Tool/Style';
+import { agregarUsuario } from '../../actions/UsuarioActions';
+
 
 const RegistrarUsuario = () => {
 
@@ -8,12 +10,12 @@ const RegistrarUsuario = () => {
     // Tabmbien tendra un metodo que nos permitira cambiar los valores
 
     const [usuario, setUsuario] = useState({
-        txtNombre : '',
-        txtApellidos : '',
-        txtEmail : '',
-        txtUsername : '',
-        txtPassword : '',
-        txtConfirmaPassword : ''
+        Nombre : '',
+        Apellidos : '',
+        Email : '',      
+        Password : '',
+        UserName : ''
+        // txtConfirmaPassword : ''
     })
 
     const ingresaValoresMemoria = e => {
@@ -26,7 +28,9 @@ const RegistrarUsuario = () => {
     }
 
     const mostrarDatosFormulario = () => {        
-         console.log('Datos del usuario. Provenientes del formulario : ', usuario);       
+         agregarUsuario(usuario).then(response =>{
+            console.log('Se agrego correctamente el usuario', response)
+         })    
     }
 
 
@@ -40,30 +44,30 @@ const RegistrarUsuario = () => {
                     <Grid container spacing={2}>
 
                         <Grid item xs={12} md={6}>
-                            <TextField name="txtNombre" value={usuario.txtNombre} onChange={ingresaValoresMemoria} variant="outlined" fullWidth label="Ingrese su nombre"/>
+                            <TextField name="Nombre" value={usuario.Nombre} onChange={ingresaValoresMemoria} variant="outlined" fullWidth label="Ingrese su nombre"/>
                         </Grid>
 
                         <Grid item xs={12} md={6}>
-                            <TextField name="txtApellidos" value={usuario.txtApellidos} onChange={ingresaValoresMemoria} variant="outlined" fullWidth label="Ingrese sus apellidos"/>
+                            <TextField name="Apellidos" value={usuario.Apellidos} onChange={ingresaValoresMemoria} variant="outlined" fullWidth label="Ingrese sus apellidos"/>
                         </Grid>
 
                         <Grid item xs={12} md={6}>
-                            <TextField name="txtEmail" value={usuario.txtEmail} onChange={ingresaValoresMemoria} variant="outlined" fullWidth label="Ingrese su email"/>
+                            <TextField name="Email" value={usuario.Email} onChange={ingresaValoresMemoria} variant="outlined" fullWidth label="Ingrese su email"/>
                         </Grid>
 
                         <Grid item xs={12} md={6}>
-                            <TextField name="txtUsername" value={usuario.txtUsername} onChange={ingresaValoresMemoria} variant="outlined" fullWidth label="Ingrese su username"/>
+                            <TextField name="UserName" value={usuario.UserName} onChange={ingresaValoresMemoria} variant="outlined" fullWidth label="Ingrese su username"/>
                         </Grid>
 
                         <Grid item xs={12} md={6}>
-                            <TextField name="txtPassword" type='password' value={usuario.txtPassword} onChange={ingresaValoresMemoria} 
+                            <TextField name="Password" type='password' value={usuario.Password} onChange={ingresaValoresMemoria} 
                             variant="outlined" fullWidth label="Ingrese su password"/>
                         </Grid>
 
-                        <Grid item xs={12} md={6}>
+                        {/* <Grid item xs={12} md={6}>
                             <TextField name="txtConfirmaPassword" type="password" value={usuario.txtConfirmaPassword} onChange={ingresaValoresMemoria} 
                              variant="outlined" fullWidth label="Confirme el password"/>
-                        </Grid>
+                        </Grid> */}
 
                     </Grid>
 
