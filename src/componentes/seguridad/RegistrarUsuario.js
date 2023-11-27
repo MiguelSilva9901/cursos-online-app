@@ -10,8 +10,7 @@ const RegistrarUsuario = () => {
     // Tabmbien tendra un metodo que nos permitira cambiar los valores
 
     const [usuario, setUsuario] = useState({
-        Nombre : '',
-        Apellidos : '',
+        nombreCompleto : '',
         Email : '',      
         Password : '',
         UserName : ''
@@ -29,7 +28,9 @@ const RegistrarUsuario = () => {
 
     const mostrarDatosFormulario = () => {        
          agregarUsuario(usuario).then(response =>{
-            console.log('Se agrego correctamente el usuario', response)
+            console.log('Se agrego correctamente el usuario', response);
+            //Acá le pasamos el token que viene en el response a la variable de nuestro navegador en este caso("token_seguridad")
+            window.localStorage.setItem("token_seguridad", response.data.token)
          })    
     }
 
@@ -43,13 +44,13 @@ const RegistrarUsuario = () => {
                 <form style={style.form}>
                     <Grid container spacing={2}>
 
-                        <Grid item xs={12} md={6}>
-                            <TextField name="Nombre" value={usuario.Nombre} onChange={ingresaValoresMemoria} variant="outlined" fullWidth label="Ingrese su nombre"/>
+                        <Grid item xs={12} md={12}>
+                            <TextField name="nombreCompleto" value={usuario.nombreCompleto} onChange={ingresaValoresMemoria} variant="outlined" fullWidth label="Ingrese su nombre"/>
                         </Grid>
 
-                        <Grid item xs={12} md={6}>
+                        {/* <Grid item xs={12} md={6}>
                             <TextField name="Apellidos" value={usuario.Apellidos} onChange={ingresaValoresMemoria} variant="outlined" fullWidth label="Ingrese sus apellidos"/>
-                        </Grid>
+                        </Grid> */}
 
                         <Grid item xs={12} md={6}>
                             <TextField name="Email" value={usuario.Email} onChange={ingresaValoresMemoria} variant="outlined" fullWidth label="Ingrese su email"/>
