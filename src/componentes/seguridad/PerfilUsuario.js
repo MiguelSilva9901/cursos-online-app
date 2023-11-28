@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import style from '../Tool/Style'
 import { Button, Container, Grid, TextField, Typography } from '@material-ui/core';
 import { actualizarUsuario, obtenerUsuarioActual } from '../../actions/UsuarioActions';
+import { useStateValue } from '../../contexto/store';
 
 export const PerfilUsuario = () => {
-
+    const [{sesionUsurio}, dispatch] = useStateValue();
     const [usuario, setUsuario] = useState({
         nombreCompleto : '',
         Token : '',
@@ -23,7 +24,7 @@ export const PerfilUsuario = () => {
     }
 
     useEffect( () => {
-        obtenerUsuarioActual().then(response => {
+        obtenerUsuarioActual(dispatch).then(response => {
             console.log('Esta es la data del usuario actual: ', response);
             setUsuario(response.data);
         });
@@ -55,7 +56,7 @@ export const PerfilUsuario = () => {
                 </Grid>
 
                 <Grid item xs={12} md={6}>
-                    <TextField name='Username' onChange={IngresarValoresMemoria} value={usuario.username} variant='outlined' label='Ingrese su username' fullWidth />
+                    <TextField name='username' onChange={IngresarValoresMemoria} value={usuario.username} variant='outlined' label='Ingrese su username' fullWidth />
                 </Grid>
 
                 <Grid item xs={12} md={6}>
